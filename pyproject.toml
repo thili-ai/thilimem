@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "thilimem"
+version = "0.1.0"
+description = "A small, hackable memory engine for AI agents — extract, resolve, store, retrieve, consolidate."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "thili.ai" }]
+keywords = ["ai", "agents", "memory", "llm", "retrieval", "rag"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Developers",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "pydantic>=2.0",
+  "numpy>=1.21",
+]
+
+[project.optional-dependencies]
+# Better embeddings (otherwise a dependency-free hashing embedder is used)
+st = ["sentence-transformers>=2.2"]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/thili-ai/thilimem"
+Repository = "https://github.com/thili-ai/thilimem"
+"Learn Fast course" = "https://learnfast.thili.ai"
+
+[tool.hatch.build.targets.wheel]
+packages = ["thilimem"]
