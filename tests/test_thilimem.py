@@ -68,6 +68,18 @@ def test_merge_keeps_max_importance():
     assert m.importance == 0.8 and set(m.entities) == {"A", "B"}
 
 
+def test_consolidate_protects_important_old_memory():
+    from datetime import datetime, timezone, timedelta
+    s = MemoryStore()
+    old = datetime.now(timezone.utc) - timedelta(days=120)
+    s.add(Memory(text="Maya is allergic to peanuts", importance=0.95, created_at=old))  # durable
+    s.add(Memory(text="we chatted about the weather", importance=0.1, created_at=old))  # disposable
+    consolidate(s)
+    texts = [m.text.lower() for m in s.all()]
+    assert any("peanut" in t for t in texts)        # durable fact survives despite age
+    assert all("weather" not in t for t in texts)   # stale, low-importance trivia is pruned
+
+
 def test_consolidate_merges_duplicates():
     s = MemoryStore()
     s.add(Memory(text="Maya is allergic to peanuts"))

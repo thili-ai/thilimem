@@ -37,9 +37,11 @@ mirrors one (or two) modules:
 
 ## Install
 
+Not on PyPI yet — install straight from GitHub:
+
 ```bash
-pip install thilimem            # core (dependency-free embeddings)
-pip install "thilimem[st]"      # + sentence-transformers for real semantic embeddings
+pip install "git+https://github.com/thili-ai/thilimem.git"                  # core (dependency-free embeddings)
+pip install "thilimem[st] @ git+https://github.com/thili-ai/thilimem.git"   # + sentence-transformers for real semantic embeddings
 ```
 
 ## Quickstart
