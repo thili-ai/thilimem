@@ -11,9 +11,11 @@ It's intentionally tiny and readable — a teaching-grade companion to productio
 
 > ⚠️ Educational reference implementation, not production infrastructure. Inspired by Synap; not affiliated with Maximem.
 
+▶️ **Watch the 40-second overview:** [Build an Agent Memory Engine](https://youtube.com/shorts/KtV2cjIMkOk)
+
 ## 📚 Built lesson-by-lesson in a Learn Fast course
 
-`thilimem` is the reference implementation for the **[Learn Fast](https://learnfast.thili.ai) course
+`thilimem` is the reference implementation for the **[Learn Fast](https://ask.thili.ai) course
 "Build an Agent Memory Engine."** You don't just *use* this library — in the course you **build it
 yourself**, one module per lesson, starting from a chatbot that forgets and ending with one that
 remembers across separate sessions.
@@ -31,6 +33,7 @@ mirrors one (or two) modules:
 | 6 · Consolidation & forgetting | the knowledge pipeline (merge / decay / prune) | `consolidate.py` |
 | 7 · Wire it into an agent | the read-before / write-after loop | `agent.py` |
 | 8 · Evaluate it | a mini LongMemEval/LoCoMo-style benchmark | `eval.py` |
+| 9 · Encryption-first storage *(optional)* | encryption at rest, and what it costs | *(extension, not in the package)* |
 
 > New here? **Start with the course**, then come back to read the polished source. The whole engine is
 > a few hundred lines, so you can hold it in your head.
@@ -45,6 +48,8 @@ pip install "thilimem[st] @ git+https://github.com/thili-ai/thilimem.git"   # + 
 ```
 
 ## Quickstart
+
+Want to see it work first? `python examples/two_session_demo.py` runs the forgetting test: tell an agent something in one session, ask in a new one. It runs offline with a stub model, or with a real model if `OPENAI_API_KEY` is set.
 
 ```python
 from thilimem import MemoryStore, MemoryAgent, openai_compatible
@@ -75,7 +80,8 @@ stats = consolidate(store)                               # merge dups, decay, pr
 ```
 
 No LLM handy? The core (store / retrieve / consolidate) works without one, and `extract_memories`
-falls back to a simple rule-based extractor — so you can explore offline.
+falls back to a crude rule-based extractor that keeps whole declarative sentences and finds no entities — fine for
+exploring offline, but use an LLM for real extraction.
 
 ## What's inside
 
