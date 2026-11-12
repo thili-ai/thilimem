@@ -11,6 +11,8 @@ It's intentionally tiny and readable — a teaching-grade companion to productio
 
 > ⚠️ Educational reference implementation, not production infrastructure. Inspired by Synap; not affiliated with Maximem.
 
+▶️ **Watch the 40-second overview:** [Build an Agent Memory Engine](https://youtube.com/shorts/KtV2cjIMkOk)
+
 ## 📚 Built lesson-by-lesson in a Learn Fast course
 
 `thilimem` is the reference implementation for the **[Learn Fast](https://ask.thili.ai) course
